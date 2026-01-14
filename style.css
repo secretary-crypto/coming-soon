@@ -1,0 +1,108 @@
+/* Reset and Base Styles */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --text-primary: #331d20; /* Deep burgundy/brown derived from logo typically */
+    --text-secondary: #6e5d60;
+    --bg-start: #ffffff;
+    --bg-end: #f5f0f0; /* Very subtle warm grey/off-white */
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: var(--text-primary);
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.content-wrapper {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* Logo Styling */
+.logo-container {
+    margin-bottom: 2rem;
+}
+
+.brand-logo {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    /* This ensures the white background of the JPG blends perfectly with our off-white gradient
+       making it look transparent. 'multiply' usually works best for black/dark logos on white.
+       If the logo is colored, we might rely on the background being very close to white
+       or use a mask. Given it's a gradient white background, 'multiply' allows the 
+       white in the image to become transparent. */
+    mix-blend-mode: multiply; 
+    filter: contrast(1.05); /* Slight pop */
+}
+
+/* Typography */
+h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+p {
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+    font-weight: 300;
+}
+
+/* Loader Animation */
+.loader-line {
+    width: 0%;
+    height: 2px;
+    background-color: var(--text-primary);
+    margin: 0 auto;
+    opacity: 0.3;
+    animation: expandLine 1.5s ease-out 0.8s forwards;
+}
+
+/* Animations */
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes expandLine {
+    to {
+        width: 60px;
+    }
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .brand-logo {
+        max-width: 250px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+}
